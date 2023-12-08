@@ -1,25 +1,21 @@
 name: CI
-
+ 
 on:
   push:
     branches: [develop]
-  
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+ 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "14.x"
-
+ 
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
@@ -27,22 +23,22 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
+ 
       - name: NPM Install
         run: npm install
-
+ 
       - name: Install Angular CLI
         run: npm install -g @angular/cli > /dev/null
-
+ 
       - name: NPM Build Angular Production
         run: npm run build:prod
-
+ 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
         with:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
           SOURCE: "dist/my-app/"
-          REMOTE_HOST: ${{secrets.EC2_HOST}}
-          REMOTE_USER: ${{secrets.EC2_USERNAME}}
-        #   TARGET: "/home/runner/work/myAngularApp/myAngularApp"
-      
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USERNAME }}
+        #   TARGET: "/path/to/your/angular/app/on/ec2"
+ 
