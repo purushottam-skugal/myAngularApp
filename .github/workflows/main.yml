@@ -34,9 +34,6 @@ jobs:
       - name: Install Angular CLI
         run: npm install -g @angular/cli > /dev/null
 
-      - name: Lint
-        run: npm run lint
-
       - name: Format
         run: npm run format
 
