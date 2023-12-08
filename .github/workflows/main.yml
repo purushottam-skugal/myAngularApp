@@ -98,7 +98,7 @@ jobs:
       - name: Start Angular Project
         run: |
           cd /home/runner/work/myAngularApp/myAngularApp
-          ng serve --host 0.0.0.0
+          npm start
 
 
 
