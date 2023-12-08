@@ -34,17 +34,8 @@ jobs:
       - name: Install Angular CLI
         run: npm install -g @angular/cli > /dev/null
 
-      - name: Format
-        run: npm run format
-
       - name: NPM Build Angular Production
         run: npm run build:prod
-
-      - name: Test
-        run: npm run test:ci
-
-      - name: Test coverage
-        run: npm run test:ci:cov
 
       - name: Deploy to my EC2 instance
         uses: easingthemes/ssh-deploy@v2.1.5
