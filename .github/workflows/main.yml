@@ -41,8 +41,8 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.1.5
         with:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          SOURCE: "dist/myApp/"
+          SOURCE: "dist/my-app/"
           REMOTE_HOST: ${{secrets.EC2_HOST}}
           REMOTE_USER: ${{secrets.EC2_USERNAME}}
-          TARGET: "/home/runner/work/myAngularApp/myAngularApp"
+        #   TARGET: "/home/runner/work/myAngularApp/myAngularApp"
       
