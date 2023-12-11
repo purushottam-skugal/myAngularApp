@@ -39,9 +39,12 @@ jobs:
   Deploy:
       needs: build
       runs-on: ubuntu-20.04
+
       
       steps:
         - uses: actions/checkout@v2
+        - name: Print Current Directory
+          run: pwd
         - name: Configure SSH
           uses: appleboy/ssh-action@v0.1.7
           with:
