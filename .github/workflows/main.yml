@@ -44,7 +44,7 @@ jobs:
             key: ${{ secrets.EC2_PRIVATE_KEY }}
             port: ${{ secrets.EC2_PORT }}
             script: |
-              cd /myAngularApp/
+              cd /home/runner/work/myAngularApp/myAngularApp
               sudo git pull
               npm install
               npm run
