@@ -23,15 +23,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-     
-      # - name: Navigate to Repository Directory
-      #   run: cd myAngularApp  
-
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-
-      - name: List Contents
-        run: ls /home/runner/work/myAngularApp
 
       - name: Build
         run: npm run build:prod
@@ -55,7 +46,7 @@ jobs:
             username: ${{ secrets.EC2_USERNAME }}
             port: ${{ secrets.EC2_PORT }}
             script: |
-              cd /home/runner/work/myAngularApp/myAngularApp
+              cd /myAngularApp
               git fetch origin develop
               npm install
               npm run
