@@ -52,8 +52,8 @@ jobs:
             script: |
               pwd
               cd myAngularApp
-              git fetch origin develop
-              npm install
+              git pull origin develop
+              npm install --legacy-peer-deps
               npm run
 
 
