@@ -43,8 +43,7 @@ jobs:
       
       steps:
         - uses: actions/checkout@v2
-        - name: Print Current Directory
-          run: pwd
+        
         - name: Configure SSH
           uses: appleboy/ssh-action@v0.1.7
           with:
@@ -54,7 +53,7 @@ jobs:
             port: ${{ secrets.EC2_PORT }}
             script: |
               cd /home/runner/work/myAngularApp/myAngularApp
-              sudo git pull
+              git fetch origin develop
               npm install
               npm run
 
@@ -64,7 +63,7 @@ jobs:
 
 
 
-              # cd /home/runner/work/myAngularApp/myAngularApp
+           
 
 
   # deploy:
