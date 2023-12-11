@@ -52,9 +52,9 @@ jobs:
             script: |
               pwd
               cd /home/runner/work/myAngularApp/myAngularApp
-              git fetch origin develop
-              npm install
-              npm run
+              # git fetch origin develop
+              # npm install
+              # npm run
 
 
 
