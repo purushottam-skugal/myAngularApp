@@ -1,40 +1,21 @@
 name: CI/CD
 
 on:
-  push:
-    branches: develop
-
+  pull_request:
+    branches: [ "develop" ]
+ 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    runs-on: ubuntu-20.04
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x to Build
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
+      - run: npm install
 
-      - name: Install dependencies
-        run: npm install
-     
-      # - name: Navigate to Repository Directory
-      #   run: cd myAngularApp  
-
-      # - name: Upload coverage to Codecov
-      #   uses: codecov/codecov-action@v1
-
-      - name: List Contents
-        run: ls /home/runner/work/myAngularApp
-
-      - name: Build
-        run: npm run build:prod
 
   Deploy:
       needs: build
@@ -50,9 +31,9 @@ jobs:
         - name: Configure SSH
           uses: appleboy/ssh-action@v0.1.7
           with:
+            key: ${{ secrets.EC2_PRIVATE_KEY }}
             host: ${{ secrets.EC2_HOST }}
             username: ${{ secrets.EC2_USERNAME }}
-            key: ${{ secrets.EC2_PRIVATE_KEY }}
             port: ${{ secrets.EC2_PORT }}
             script: |
               cd /home/runner/work/myAngularApp/myAngularApp
