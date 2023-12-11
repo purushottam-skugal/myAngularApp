@@ -51,7 +51,7 @@ jobs:
             port: ${{ secrets.EC2_PORT }}
             script: |
               pwd
-              cd /home/runner/work/myAngularApp/myAngularApp
+              # cd /home/runner/work/myAngularApp/myAngularApp
               # git fetch origin develop
               # npm install
               # npm run
