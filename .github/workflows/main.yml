@@ -38,25 +38,15 @@ jobs:
 
   Deploy:
       needs: build
-      runs-on: ubuntu-latest
-
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #    node-version: '14'
-
-      
+      runs-on: ubuntu-latest      
       
       steps:
-        - name: Setup Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version: '14'
-            
-        - name: Install Dependencies
-          run: npm install
         - uses: actions/checkout@v2
-        
+        - name: Debug Directory
+          run: |
+            pwd
+            ls -l
+
         - name: Configure SSH
           uses: appleboy/ssh-action@v0.1.7
           with:
